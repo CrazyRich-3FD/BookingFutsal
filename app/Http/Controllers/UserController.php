@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
     
-        return view('User.index',compact('user','ulasan'))
+        return view('User.index',compact('user','ulasan'),["title" => "User"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
@@ -32,7 +33,7 @@ class UserController extends Controller
     public function create()
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.create',compact('ulasan'));
+        return view('User.create',compact('ulasan'),["title" => "Create User"]);
     }
 
     /**
@@ -44,16 +45,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
-            'no_hp' => 'required',
-            'role' => 'required',
+        $validation = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email:dns|unique:user',
+            'username' => 'required|min:3|max:255|unique:user',
+            'password' => 'required|min:5|max:255|required_with:password-confirm|same:password-confirm',
+            'password-confirm' => 'required|min:5|max:255',
+            'no_hp' => 'required|numeric|min:5|unique:user',
             'level' => 'required',
+            'role' => 'required'
         ]);
+
+        $validation['password'] = Hash::make($validation['password']);
     
         try {
-            User::create($request->all());
+            User::create($validation);
 
             return redirect()->route('user.index')
                 ->with('success', 'User Created Successfully!');
@@ -73,7 +79,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.show',compact('user','ulasan'));
+        return view('User.show',compact('user','ulasan'),["title" => "Show User"]);
     }
 
     /**
@@ -85,7 +91,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.edit',compact('user','ulasan'));
+        return view('User.edit',compact('user','ulasan'),["title" => "Edit User"]);
     }
     
 
@@ -99,16 +105,33 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required',
-            'no_hp' => 'required',
-            'role' => 'required',
+        $rules = [
+            'nama' => 'required|max:255',
             'level' => 'required',
-        ]);
+            'role' => 'required'
+        ];
+
+        if($request->email != $user->email){
+            $rules['email'] = 'required|email:dns|unique:user';
+        }
+
+        if($request->username != $user->username){
+            $rules['username'] = 'required|min:3|max:255|unique:user';
+        }
+
+        if($request->no_hp != $user->no_hp){
+            $rules['no_hp'] = 'required|numeric|min:5|unique:user';
+        }
+
+        $validation = $request->validate($rules);
+
+        $validation['id'] = auth()->user()->id;
+        $validation['password'] = Hash::make($validation['password']);
         
         try {
-            $user->update($request->all());
+            // $user->update($validation);
+            User::where('id', $user->id)
+                    ->update($validation);
 
             return redirect()->route('user.index')
                 ->with('success', 'User Update Successfully!');

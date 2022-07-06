@@ -6,7 +6,9 @@ use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
 
@@ -21,16 +23,16 @@ use App\Http\Controllers\UlasanController;
 |
 */
 
-Route::get('/login', function () {
-    return view('Login.index');
+Route::get('/reset-password', function () {
+    return view('Auth.reset-password');
 });
 
-Route::get('/register', function () {
-    return view('Register.index');
+Route::get('/forgot-password', function () {
+    return view('Auth.forgot-password');
 });
 
 Route::get('/contact', function () {
-    return view('layouts.contact');
+    return view('layouts.contact',["title" => "Contact"]);
 });
 
 //---------route admin------------
@@ -42,16 +44,24 @@ Route::get('/contact', function () {
 
 // ----------- Route Bisnis Proses --------------
 
-Route::resource('admins/lapangan', LapanganController::class);
-Route::resource('admins/booking', BookingController::class);
-Route::resource('admins/pelanggan', PelangganController::class);
-Route::resource('admins/transaksi', TransaksiController::class);
-Route::resource('admins/ulasan', UlasanController::class);
-Route::resource('admins/user', UserController::class);
-Route::resource( '',LayoutController::class);
-Route::resource( 'home',LayoutController::class);
-Route::resource( 'admins',DashboardController::class);
+Route::resource('admins/lapangan', LapanganController::class)->middleware('admin');
+Route::resource('admins/booking', BookingController::class)->middleware('admin');
+Route::resource('admins/pelanggan', PelangganController::class)->middleware('admin');
+Route::resource('admins/transaksi', TransaksiController::class)->middleware('admin');
+Route::resource('admins/ulasan', UlasanController::class)->middleware('admin');
+Route::resource('admins/user', UserController::class)->middleware('admin');
+Route::resource('', LayoutController::class);
+Route::resource('home', LayoutController::class);
+Route::resource('admins', DashboardController::class)->middleware('admin');
 
-Route::get('/lapangan-list', [LapanganController::class,'lapanganList']);
+Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
+
+Route::get('registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
+Route::post('registrasi', [RegistrasiController::class, 'store']);
+
+Route::get('/lapangan-list', [LapanganController::class, 'lapanganList']);
 Route::get('transaksiPDF', [TransaksiController::class, 'transaksiPDF']);
 Route::get('transaksiExcel', [TransaksiController::class, 'transaksiExcel']);

@@ -4,29 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Register &mdash; Stisla</title>
+  <title>Registrasi</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('admin/modules/fontawesome/css/all.min.css')}}">
-
-  <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ asset('admin/modules/jquery-selectric/selectric.css')}}">
-  <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('admin/css/style.css')}}">
-  <link rel="stylesheet" href="{{ asset('admin/css/components.css')}}">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --><!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/modules/fontawesome/css/all.min.css') }}">
 
@@ -75,40 +55,71 @@
               <div class="card-header"><h4>Register</h4></div>
 
               <div class="card-body">
-                <form method="POST">
+                <form action="/registrasi" method="POST">
+                  @csrf
                   <div class="row">
                     <div class="form-group col-12">
-                      <label for="frist_name">Full name</label>
-                      <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>
+                      <label for="nama">Full name</label>
+                      <input id="nama" type="text" class="form-control @error('nama') is-invalid @enderror " name="nama" autofocus value="{{ old('nama') }}">
+                      @error('nama')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
+                      
                     </div>
                     {{-- <div class="form-group col-6">
                       <label for="last_name">Last Name</label>
                       <input id="last_name" type="text" class="form-control" name="last_name">
                     </div> --}}
-                  </div>
+                  
 
-                  <div class="form-group">
+                  <div class="form-group col-12">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email">
-                    <div class="invalid-feedback">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                    @error('email')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
+                  </div>
+                  
+                  <div class="form-group col-12">
+                    <label for="username">Username</label>
+                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}">
+                    @error('username')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="form-group col-6">
                       <label for="password" class="d-block">Password</label>
-                      <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                      <input id="password" type="password" class="form-control pwstrength @error('password') is-invalid @enderror" data-indicator="pwindicator" name="password">
                       <div id="pwindicator" class="pwindicator">
                         <div class="bar"></div>
                         <div class="label"></div>
                       </div>
+                      @error('password')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                     <div class="form-group col-6">
                       <label for="password2" class="d-block">Password Confirmation</label>
-                      <input id="password2" type="password" class="form-control" name="password-confirm">
+                      <input id="password2" type="password" class="form-control @error('password-confirm') is-invalid @enderror" name="password-confirm">
+                      @error('password-confirm')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                   </div>
-                  <div class="form-group">
+                   <div class="form-group">
                     <label>No.HP</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
@@ -116,9 +127,28 @@
                           <i class="fas fa-phone"></i>
                         </div>
                       </div>
-                      <input type="text" name="no_hp" class="form-control phone-number">
+                      <input type="text" name="no_hp" class="form-control phone-number @error('no_hp') is-invalid @enderror" value="{{ old('no_hp') }}">
+                      @error('no_hp')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
                     </div>
                   </div>
+                  <input type="hidden" name="level" value="Bronze">
+                  <input type="hidden" name="role" value="Member">
+
+                  @error('level')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                      @enderror
+
+                      @error('role')
+                      <div class="invalid-feedback">
+                        {{ $message }}
+                      </div>
+                  @enderror
 
                   {{-- <div class="form-divider">
                     Your Home
@@ -168,7 +198,8 @@
                 </form>
               </div>
             </div>
-            <div class="simple-footer">
+          </div>
+            <div class="col-12 simple-footer">
               Copyright &copy; Stisla 2018
             </div>
           </div>

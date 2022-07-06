@@ -22,7 +22,7 @@ class LapanganController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
     
-        return view('Lapangan.index',compact('lapangan','ulasan'))
+        return view('Lapangan.index',compact('lapangan','ulasan'),["title" => "Lapangan"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -36,7 +36,7 @@ class LapanganController extends Controller
         //
         $lapangan = Lapangan::latest()->paginate(6);
     
-        return view('Lapangan.lapangan_list',compact('lapangan'))
+        return view('Lapangan.lapangan_list',compact('lapangan'),["title" => "List-Lapangan"])
             ->with('i', (request()->input('page', 1) - 1) * 6);
     }
 

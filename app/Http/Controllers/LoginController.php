@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UlasanController extends Controller
+class LoginController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class UlasanController extends Controller
      */
     public function index()
     {
-        $ulasan = Ulasan::latest()->paginate(10);
-    
-        return view('Ulasan.index',compact('ulasan'),["title" => "Ulasan"])
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('Login.index',["title" => "Login"]);
     }
 
     /**
@@ -25,9 +22,37 @@ class UlasanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function authenticate(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'email' => 'required|email:dns',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
+            // if(!auth()->check() || auth()->user()->role !== 'Admin'){
+            //     return redirect()->intended('/admins');
+            // }
+            // else{
+            //     return redirect()->intended('/');
+            // }
+            
+        }
+
+        return back()->with('loginError', 'Login failed!!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+ 
+        request()->session()->invalidate();
+    
+        request()->session()->regenerateToken();
+    
+        return redirect('/');
     }
 
     /**

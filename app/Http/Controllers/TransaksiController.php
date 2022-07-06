@@ -27,7 +27,7 @@ class TransaksiController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
     
-        return view('Transaksi.index',compact('transaksi','ulasan'))
+        return view('Transaksi.index',compact('transaksi','ulasan'),["title" => "Transaksi"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 

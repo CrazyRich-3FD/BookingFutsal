@@ -21,7 +21,7 @@ class BookingController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Booking.index',compact('booking','ulasan'))
+        return view('Booking.index',compact('booking','ulasan'),["title" => "Booking"])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

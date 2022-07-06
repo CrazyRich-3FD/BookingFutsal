@@ -28,7 +28,7 @@ class DashboardController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('admin.home',compact('ulasan','admin','member','lapangan','transaksi'));
+        return view('admin.home',compact('ulasan','admin','member','lapangan','transaksi'),["title" => "Home"]);
 
     }
 

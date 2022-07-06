@@ -22,19 +22,19 @@ class PelangganController extends Controller
         // Ulasan
         $ulasan = Ulasan::latest()->paginate(5);
     
-        return view('Pelanggan.index',compact('pelanggan','ulasan'))
+        return view('Pelanggan.index',compact('pelanggan','ulasan'),["title" => "Pelanggan"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
    
     }
 
-    public function pelangganList()
-    {
-        //
-        $pelanggan = Pelanggan::latest()->paginate(9);
+    // public function pelangganList()
+    // {
+    //     //
+    //     $pelanggan = Pelanggan::latest()->paginate(9);
     
-        return view('Pelanggan.pelanggan_list',compact('pelanggan'))
-            ->with('i', (request()->input('page', 1) - 1) * 9);
-    }
+    //     return view('Pelanggan.pelanggan_list',compact('pelanggan'))
+    //         ->with('i', (request()->input('page', 1) - 1) * 9);
+    // }
     /**
      * Show the form for creating a new resource.
      *

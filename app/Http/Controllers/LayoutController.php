@@ -16,6 +16,6 @@ class LayoutController extends Controller
     {
         $ulasan = Ulasan::latest()->paginate(5);
     
-        return view('layouts.home',compact('ulasan'));
+        return view('layouts.home',compact('ulasan'),["title" => "Home"]);
     }
 }

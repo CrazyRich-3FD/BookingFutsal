@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ulasan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
-class UlasanController extends Controller
+class RegistrasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,7 @@ class UlasanController extends Controller
      */
     public function index()
     {
-        $ulasan = Ulasan::latest()->paginate(10);
-    
-        return view('Ulasan.index',compact('ulasan'),["title" => "Ulasan"])
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+        return view('Registrasi.index',["title" => "Registrasi"]);
     }
 
     /**
@@ -38,7 +36,22 @@ class UlasanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return request()->all();
+        $validation = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|email:dns|unique:user',
+            'username' => 'required|min:3|max:255|unique:user',
+            'password' => 'required|min:5|max:255|required_with:password-confirm|same:password-confirm',
+            'password-confirm' => 'required|min:5|max:255',
+            'no_hp' => 'required|numeric|min:5|unique:user',
+            'level' => 'required',
+            'role' => 'required'
+        ]);
+
+        $validation['password'] = Hash::make($validation['password']);
+        User::create($validation);
+        // $request->session()->flash('success', 'Registration successful! Please login');
+        return redirect('/login')->with('success', 'Registration successful! Please login');
     }
 
     /**

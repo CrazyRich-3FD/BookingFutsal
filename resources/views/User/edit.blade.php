@@ -3,7 +3,8 @@
 <div class="main-content">
     <section class="section">
         <div class="card">
-            <form action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            <form action="{{ route('user.update',$user->id) }}" method="POST" enctype="multipart/form-data"
+                class="forms-sample">
                 @csrf
                 @method('PUT')
                 <div class="card-header">
@@ -50,23 +51,47 @@
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        <input type="text" class="form-control" name="username" value="{{ $user->username }}" required="">
+                        <input type="text" class="form-control" name="username" value="{{ $user->username }}"
+                            required="">
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              <i class="fas fa-lock"></i>
+                    {{-- <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="password" value="{{ $user->password }}"
+                                        class="form-control pwstrength" data-indicator="pwindicator">
+                                </div>
+                                <div id="pwindicator" class="pwindicator">
+                                    <div class="bar"></div>
+                                    <div class="label"></div>
+                                </div>
                             </div>
-                          </div>
-                          <input type="password" name="password" value="{{ $user->password }}" class="form-control pwstrength" data-indicator="pwindicator">
                         </div>
-                        <div id="pwindicator" class="pwindicator">
-                          <div class="bar"></div>
-                          <div class="label"></div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label>Password Confirm</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password" name="password-confirm" class="form-control pwstrength"
+                                        data-indicator="pwindicator" value="{{ $user->password }}>
+                                </div>
+                                <div id="pwindicator" class="pwindicator">
+                                    <div class="bar"></div>
+                                    <div class="label"></div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div> --}}
                     <div class="form-group">
                         <label>Email</label>
                         <input type="email" class="form-control" value="{{ $user->email }}" name="email">
@@ -74,14 +99,15 @@
                     <div class="form-group">
                         <label>No.HP</label>
                         <div class="input-group">
-                          <div class="input-group-prepend">
-                            <div class="input-group-text">
-                              <i class="fas fa-phone"></i>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fas fa-phone"></i>
+                                </div>
                             </div>
-                          </div>
-                          <input type="text" name="no_hp" value="{{ $user->no_hp }}" class="form-control phone-number">
+                            <input type="text" name="no_hp" value="{{ $user->no_hp }}"
+                                class="form-control phone-number">
                         </div>
-                      </div>
+                    </div>
 
                 </div>
                 <div class="card-footer text-right d-flex justify-content-center">

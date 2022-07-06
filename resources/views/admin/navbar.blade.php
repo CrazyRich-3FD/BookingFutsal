@@ -201,7 +201,7 @@
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user">
               <img alt="image" src="{{ asset('admin/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+              <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
@@ -215,9 +215,13 @@
                 <i class="fas fa-cog"></i> Settings
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
+              <form action="/logout" method="POST">
+                @csrf
+                <button type="submit" class="dropdown-item text-danger fw-bold"><i class="fas fa-sign-out-alt"></i>&emsp;<span>Logout</span> </button>
+              </form>
+              {{-- <a href="#" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
+              </a> --}}
             </div>
           </li>
         </ul>
