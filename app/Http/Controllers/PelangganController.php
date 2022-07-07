@@ -46,7 +46,7 @@ class PelangganController extends Controller
         $user = User::all();
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Pelanggan.create',compact('user','ulasan'));
+        return view('Pelanggan.create',compact('user','ulasan'),["title" => "Create Pelanggan"]);
     }
 
     /**
@@ -92,7 +92,7 @@ class PelangganController extends Controller
     public function show(Pelanggan $pelanggan)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Pelanggan.show',compact('pelanggan','ulasan'));
+        return view('Pelanggan.show',compact('pelanggan','ulasan'),["title" => "Show Pelanggan"]);
     }
 
     /**
@@ -106,7 +106,7 @@ class PelangganController extends Controller
         //
         $user = User::all();
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Pelanggan.edit',compact('pelanggan','user','ulasan'));
+        return view('Pelanggan.edit',compact('pelanggan','user','ulasan'),["title" => "Update Pelanggan"]);
     }
 
     /**

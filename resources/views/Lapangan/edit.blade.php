@@ -30,11 +30,11 @@
                     </div>
                     <div class="form-group">
                         <label>Harga Normal</label>
-                        <input type="text" class="form-control" name="harga_normal" value="{{ $lapangan->harga_normal }}">
+                        <input type="number" class="form-control" name="harga_normal" value="{{ $lapangan->harga_normal }}">
                     </div>
                     <div class="form-group">
                         <label>Harga Weekend</label>
-                        <input type="text" class="form-control" name="harga_weekend" value="{{ $lapangan->harga_weekend }}">
+                        <input type="number" class="form-control" name="harga_weekend" value="{{ $lapangan->harga_weekend }}">
                     </div>
                     <div class="form-group">
                         <label>Gambar</label>

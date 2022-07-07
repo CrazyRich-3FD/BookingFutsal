@@ -5,12 +5,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LapanganController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
+use Illuminate\Cache\Console\ForgetCommand;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,13 +56,19 @@ Route::resource('', LayoutController::class);
 Route::resource('home', LayoutController::class);
 Route::resource('admins', DashboardController::class)->middleware('admin');
 
-Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
-Route::post('registrasi', [RegistrasiController::class, 'store']);
+Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
+Route::post('/registrasi', [RegistrasiController::class, 'store']);
+
+Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPassword'])->name('forget.password.get')->middleware('guest');
+Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPassword'])->name('forget.password.post');
+
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPassword'])->name('reset.password.get')->middleware('guest');
+Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('reset.password.post');
 
 Route::get('/lapangan-list', [LapanganController::class, 'lapanganList']);
 Route::get('transaksiPDF', [TransaksiController::class, 'transaksiPDF']);

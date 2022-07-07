@@ -48,7 +48,7 @@ class LapanganController extends Controller
     public function create()
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.create',compact('ulasan'));
+        return view('Lapangan.create',compact('ulasan'),["title" => "Create Lapangan"]);
     }
 
     /**
@@ -95,7 +95,7 @@ class LapanganController extends Controller
     public function show(Lapangan $lapangan)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.show',compact('lapangan','ulasan'));
+        return view('Lapangan.show',compact('lapangan','ulasan'),["title" => "Show Lapangan"]);
     }
 
     /**
@@ -107,7 +107,7 @@ class LapanganController extends Controller
     public function edit(Lapangan $lapangan)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.edit',compact('lapangan','ulasan'));
+        return view('Lapangan.edit',compact('lapangan','ulasan'),["title" => "Update Lapangan"]);
     }
 
     /**

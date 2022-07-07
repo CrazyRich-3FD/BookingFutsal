@@ -43,7 +43,7 @@ class TransaksiController extends Controller
         $booking = Booking::all();
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Transaksi.create',compact('pelanggan','booking','ulasan'));
+        return view('Transaksi.create',compact('pelanggan','booking','ulasan'),["title" => "Create Transaksi"]);
     }
 
     /**
@@ -88,7 +88,7 @@ class TransaksiController extends Controller
     public function show(Transaksi $transaksi)
     {
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Transaksi.show',compact('transaksi','ulasan'));
+        return view('Transaksi.show',compact('transaksi','ulasan'),["title" => "Show Transaksi"]);
     }
 
     /**
@@ -104,7 +104,7 @@ class TransaksiController extends Controller
         $booking = Booking::all();
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Transaksi.edit',compact('transaksi','pelanggan','booking','ulasan'));
+        return view('Transaksi.edit',compact('transaksi','pelanggan','booking','ulasan'),["title" => "Update Transaksi"]);
     }
 
     /**

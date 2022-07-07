@@ -36,7 +36,7 @@ class BookingController extends Controller
         $lapangan = Lapangan::all();
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Booking.create',compact('lapangan','ulasan'));
+        return view('Booking.create',compact('lapangan','ulasan'),["title" => "Create Booking"]);
     }
 
     /**
@@ -78,7 +78,7 @@ class BookingController extends Controller
     {
         //
         $ulasan = Ulasan::latest()->paginate(5);
-        return view('Booking.show',compact('booking','ulasan'));
+        return view('Booking.show',compact('booking','ulasan'),["title" => "Show Booking"]);
     }
 
     /**
@@ -93,7 +93,7 @@ class BookingController extends Controller
         $lapangan = Lapangan::all();
         $ulasan = Ulasan::latest()->paginate(5);
 
-        return view('Booking.edit',compact('booking','lapangan','ulasan'));
+        return view('Booking.edit',compact('booking','lapangan','ulasan'),["title" => "Update Booking"]);
     }
 
     /**

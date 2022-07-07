@@ -19,7 +19,7 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-primary py-2 px-4 ms-3 dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                     Welcome back, {{ auth()->user()->nama }}
+                     Welcome, {{ auth()->user()->nama }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end mt-2">
                     <li><a class="dropdown-item" href="{{ '/admins' }}">Dashboard</a></li>

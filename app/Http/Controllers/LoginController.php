@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,16 +31,20 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-            // if(!auth()->check() || auth()->user()->role !== 'Admin'){
-            //     return redirect()->intended('/admins');
-            // }
-            // else{
-            //     return redirect()->intended('/');
-            // }
+                $request->session()->regenerate();
+                if($user = Auth::user()){
+                    if($user->role == 'Admin'){
+                        return redirect()->intended('/admins'); 
+                    }
+                    else{
+                        return redirect()->intended('/'); 
+                    }
+                }
+                           
+            }
             
-        }
+
+        
 
         return back()->with('loginError', 'Login failed!!');
     }
