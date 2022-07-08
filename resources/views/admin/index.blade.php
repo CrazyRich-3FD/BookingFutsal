@@ -136,8 +136,6 @@
                             icon: 'success',
                         });
                         form.submit();
-                    } else {
-                        swal('Data anda aman!');
                     }
                 });
 
