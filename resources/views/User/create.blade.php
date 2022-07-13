@@ -20,20 +20,14 @@
                 @endif
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Nama User</label>
+                        <label>Nama Lengkap</label>
                         <input type="text" class="form-control" name="nama">
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
-                                <label>Level</label>
-                                <select class="form-control" name="level">
-                                    <option>--- Pilih Level ---</option>
-                                    <option value="Bronze">Bronze</option>
-                                    <option value="Silver">Silver</option>
-                                    <option value="Gold">Gold</option>
-                                    <option value="Platinum">Platinum</option>
-                                </select>
+                                <label>Username</label>
+                                <input type="text" class="form-control" name="username">
                             </div>
                         </div>
                         <div class="col-6">
@@ -46,10 +40,6 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username">
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -102,14 +92,17 @@
                                     <i class="fas fa-phone"></i>
                                 </div>
                             </div>
-                            <input type="text" name="no_hp" class="form-control phone-number">
+                            <input type="text" name="no_hp" class="form-control phone-numberid">
                         </div>
                     </div>
-
+                    <div class="form-group mb-0">
+                        <label>Alamat</label>
+                        <textarea class="form-control" name="alamat" cols="30" rows="10"></textarea>
+                      </div>
                 </div>
                 <div class="card-footer text-right d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>
-                    <a href="{{ url('user') }}" class="btn btn-success">Cancel</a>
+                    <a href="{{ url('admins/user') }}" class="btn btn-success">Cancel</a>
                 </div>
             </form>
         </div>

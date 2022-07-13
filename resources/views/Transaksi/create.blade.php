@@ -24,10 +24,10 @@
                         <div class="col-4">
                             <div class="form-group">
                                 <label>Nama Pelanggan</label>
-                                <select class="form-control select2" name="pelanggan_id">
+                                <select class="form-control select2" name="user_id">
                                     <option>--- Pilih Pelanggan ---</option>
-                                    @foreach ($pelanggan as $p)
-                                    <option value="{{ $p->id }}">{{ $p->nama }}</option>
+                                    @foreach ($user as $u)
+                                    <option value="{{ $u->id }}">{{ $u->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -63,7 +63,7 @@
 
                 <div class="card-footer text-right d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>
-                    <a href="{{ url('transaksi') }}" class="btn btn-success">Cancel</a>
+                    <a href="{{ url('admins/transaksi') }}" class="btn btn-success">Cancel</a>
                 </div>
             </form>
         </div>

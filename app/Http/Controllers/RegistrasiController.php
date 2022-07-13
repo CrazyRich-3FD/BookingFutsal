@@ -42,9 +42,9 @@ class RegistrasiController extends Controller
             'email' => 'required|email:dns|unique:user',
             'username' => 'required|min:3|max:255|unique:user',
             'password' => 'required|min:5|max:255|required_with:password-confirm|same:password-confirm',
-            'password-confirm' => 'required|min:5|max:255',
+            // 'password-confirm' => 'required|min:5|max:255',
             'no_hp' => 'required|numeric|min:5|unique:user',
-            'level' => 'required',
+            'alamat' => 'required',
             'role' => 'required'
         ]);
 

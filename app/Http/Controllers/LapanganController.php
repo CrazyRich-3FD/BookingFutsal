@@ -20,9 +20,9 @@ class LapanganController extends Controller
         //
         $lapangan = Lapangan::latest()->paginate(10);
         // Ulasan
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
     
-        return view('Lapangan.index',compact('lapangan','ulasan'),["title" => "Lapangan"])
+        return view('Lapangan.index',compact('lapangan','ulasans'),["title" => "Lapangan"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -47,8 +47,8 @@ class LapanganController extends Controller
      */
     public function create()
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.create',compact('ulasan'),["title" => "Create Lapangan"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('Lapangan.create',compact('ulasans'),["title" => "Create Lapangan"]);
     }
 
     /**
@@ -65,6 +65,7 @@ class LapanganController extends Controller
         'jenis_lapangan' => 'required',
         'harga_normal' => 'required',
         'harga_weekend' => 'required',
+        'status'=> 'required',
         'deskripsi' => 'required',
         'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'     
         ]);
@@ -94,8 +95,8 @@ class LapanganController extends Controller
      */
     public function show(Lapangan $lapangan)
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.show',compact('lapangan','ulasan'),["title" => "Show Lapangan"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('Lapangan.show',compact('lapangan','ulasans'),["title" => "Show Lapangan"]);
     }
 
     /**
@@ -106,8 +107,8 @@ class LapanganController extends Controller
      */
     public function edit(Lapangan $lapangan)
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('Lapangan.edit',compact('lapangan','ulasan'),["title" => "Update Lapangan"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('Lapangan.edit',compact('lapangan','ulasans'),["title" => "Update Lapangan"]);
     }
 
     /**
@@ -125,6 +126,7 @@ class LapanganController extends Controller
             'jenis_lapangan' => 'required',
             'harga_normal' => 'required',
             'harga_weekend' => 'required',
+            'status'=> 'required',
             'deskripsi' => 'required',
         ]);
 

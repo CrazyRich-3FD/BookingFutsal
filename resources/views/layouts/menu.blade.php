@@ -22,7 +22,7 @@
                      Welcome, {{ auth()->user()->nama }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end mt-2">
-                    <li><a class="dropdown-item" href="{{ '/admins' }}">Dashboard</a></li>
+                    {{-- <li><a class="dropdown-item" href="{{ '/admins' }}">Dashboard</a></li> --}}
                     <div class="dropdown-divider"></div>
                     <li>
                         <form action="/logout" method="POST">

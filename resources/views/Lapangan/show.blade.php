@@ -37,6 +37,11 @@
                                 <td>{{ $lapangan->jenis_lapangan }}</td>
                               </tr>
                               <tr>
+                                <th scope="row">Status</th>
+                                <td>:</td>
+                                <td>{{ $lapangan->status }}</td>
+                              </tr>
+                              <tr>
                                 <th scope="row">Harga Normal</th>
                                 <td >:</td>
                                 <td>Rp. {{  Str::currency($lapangan->harga_normal) }}</td>

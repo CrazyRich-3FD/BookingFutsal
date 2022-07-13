@@ -26,9 +26,9 @@ class DashboardController extends Controller
         $lapangan = Lapangan::count();
         $transaksi = Transaksi::count();
         // Ulasan
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('admin.home',compact('ulasan','admin','member','lapangan','transaksi'),["title" => "Home"]);
+        return view('admin.home',compact('ulasans','admin','member','lapangan','transaksi'),["title" => "Home"]);
 
     }
 

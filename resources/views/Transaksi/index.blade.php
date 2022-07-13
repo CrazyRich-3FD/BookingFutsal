@@ -36,10 +36,10 @@
                             @foreach ($transaksi as $t)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $t->pelanggan->nama }}</td>
+                                <td>{{ $t->user->nama }}</td>
                                 <td>{{ $t->booking->lapangan->nama }}</td>
-                                <td>{{ $t->pelanggan->no_tlp }}</td>
-                                <td>{{ $t->pelanggan->alamat }}</td>
+                                <td>{{ $t->user->no_hp }}</td>
+                                <td>{{ $t->user->alamat }}</td>
                                 <td>
                                     <form action="{{ route('transaksi.destroy',$t->id) }}" method="POST"
                                         class="d-flex align-items-center">

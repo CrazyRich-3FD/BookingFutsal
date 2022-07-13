@@ -6,7 +6,7 @@
             <div class="card-header">
                 <h4>Show Booking</h4>
                 <div class="card-header-action">
-                    <a href="{{ url('transaksi') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ url('admins/transaksi') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
             <div class="row">
@@ -29,7 +29,7 @@
                             <tr>
                                 <th scope="row">Nama Pelanggan</th>
                                 <td style="width: 0">:</td>
-                                <td>{{ $transaksi->pelanggan->nama }}</td>
+                                <td>{{ $transaksi->user->nama }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Nama Lapangan</th>
@@ -40,6 +40,11 @@
                                 <th scope="row">Jenis Lapangan</th>
                                 <td style="width: 0">:</td>
                                 <td>{{ $transaksi->booking->lapangan->jenis_lapangan }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Status</th>
+                                <td>:</td>
+                                <td>{{ $transaksi->booking->lapangan->status }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Harga Normal</th>
@@ -65,11 +70,6 @@
                                 <th scope="row">Durasi</th>
                                 <td>:</td>
                                 <td>{{ $transaksi->booking->durasi }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Status</th>
-                                <td>:</td>
-                                <td>{{ $transaksi->booking->status }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Pembayaran</th>

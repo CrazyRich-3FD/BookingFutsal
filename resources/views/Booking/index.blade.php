@@ -24,20 +24,18 @@
                                 <th>Tgl Booking</th>
                                 <th>Jam Booking</th>
                                 <th>Durasi Booking</th>
-                                <th>Status Booking</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($booking as $b)
                             <tr>
-                                <td>{{ ++$i }}</td>
+                                <td style="text-align: center">{{ ++$i }}</td>
                                 <td>{{ $b->lapangan->nama }}</td>
-                                <td>{{ $b->tgl_booking }}</td>
-                                <td>{{ date('h:i A', strtotime($b->jam_booking))}}</td>
-                                <td>{{ $b->durasi }} Jam</td>
-                                <td>{{ $b->status }}</td>
-                                <td>
+                                <td style="text-align: center">{{ $b->tgl_booking }}</td>
+                                <td style="text-align: center">{{ date('h:i A', strtotime($b->jam_booking))}}</td>
+                                <td style="text-align: center">{{ $b->durasi }} Jam</td>
+                                <td class="d-flex justify-content-center">
                                     <form action="{{ route('booking.destroy',$b->id) }}" method="POST"
                                         class="d-flex align-items-center">
                                         <a class="btn btn-primary btn-sm mr-3"

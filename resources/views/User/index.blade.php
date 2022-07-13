@@ -24,21 +24,19 @@
                                 <th>Email</th>
                                 <th>No. HP</th>
                                 <th>Role</th>
-                                <th>Level</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($user as $u)
                             <tr>
-                                <td>{{ ++$i }}</td>
+                                <td style="text-align: center">{{ ++$i }}</td>
                                 <td>{{ $u->nama }}</td>
                                 <td>{{ $u->email }}</td>
                                 <td>{{ $u->no_hp }}</td>
-                                <td>{{ $u->role }}</td>
-                                <td>{{ $u->level }}</td>
+                                <td style="text-align: center">{{ $u->role }}</td>
                                 
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     <form action="{{ route('user.destroy',$u->id) }}" method="POST"
                                         class="d-flex align-items-center">
                                         <a class="btn btn-primary btn-sm btn-icon-text mr-3"

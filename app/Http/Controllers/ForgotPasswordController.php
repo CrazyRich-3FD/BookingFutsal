@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash as FacadesHash;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use MigrationCartalystSentinel;
 
 class ForgotPasswordController extends Controller
 {
@@ -35,27 +36,50 @@ class ForgotPasswordController extends Controller
        */
       public function submitForgetPassword(Request $request)
       {
+        //   $request = User::whereEmail($request->email)->first();
+
+        //   if(count($user) == 0){
+        //       return redirect()->back()->with(['error' => 'Email not exists']);
+        //   }
+
+        //   $user = Sentinel::findById($user->id);
+        //   $reminder = Reminder::exists($user) ? : Reminder::create($user);
+          
+
           $request->validate([
               'email' => 'required|email|exists:user',
           ]);
   
           $token = Str::random(64);
   
-          FacadesDB::table('user')->insert([
-              'email' => $request->email, 
-              'token' => $token, 
-              'created_at' => Carbon::now(),
-            //   'nama'=> $request->nama,
-            //   'username'=> $user->username,
-            //   'password'=> $user->password,
-            ]);
+        //   FacadesDB::table('user')->updateOrInsert([
+        //       'email' => $request->email, 
+        //       'token' => $token, 
+        //       'created_at' => Carbon::now(),
+        //     //   'nama'=> $request->nama,
+        //     //   'username'=> $user->username,
+        //     //   'password'=> $user->password,
+        //     ]);
   
-          FacadesMail::send('email.forgetPassword', ['token' => $token], function($message) use($request){
-              $message->to($request->email);
-              $message->subject('Reset Password');
-          });
+        //   FacadesMail::send('Auth.passwordLink', ['token' => $token], function($message) use($request){
+        //       $message->to($request->email);
+        //       $message->subject('Reset Password');
+        //   });
   
-          return back()->with('message', 'We have e-mailed your password reset link!');
+        //   return redirect()->back()->with('success', 'We have e-mailed your password reset link!');
+
+          try {
+            FacadesMail::send('Auth.passwordLink', ['token' => $token], function($message) use($request){
+                $message->to($request->email);
+                $message->subject('Reset Password');
+            });
+
+            return redirect()->back()
+                ->with('success', 'We have e-mailed your password reset link!');
+        } catch (\Exception $e){
+            return redirect()->back()
+                ->with('error', 'Error during the creation!');
+        }
       }
 
       public function submitForgetPasswordd(Request $request)
@@ -94,8 +118,7 @@ class ForgotPasswordController extends Controller
   
           $updatePassword = FacadesDB::table('user')
                               ->where([
-                                'email' => $request->email, 
-                                'token' => $request->token
+                                'email' => $request->email
                               ])
                               ->first();
   

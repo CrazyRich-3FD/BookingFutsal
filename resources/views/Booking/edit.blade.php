@@ -22,7 +22,7 @@
                 @endif
                 <div class="card-body">
                     <div class="form-group">
-                        <label>ID Lapangan</label>
+                        <label>Lapangan</label>
                         <select class="form-control select2" name="lapangan_id">
                             <option value="{{ $booking->lapangan_id }}">{{ $booking->lapangan->nama }}</option>
                             @foreach ($lapangan as $l)
@@ -53,21 +53,10 @@
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control select2" name="status">
-                            <option value="{{ $booking->status }}">{{ $booking->status }}</option>
-                            <option value="Tersedia">Tersedia</option>
-                            <option value="Sudah Dipesan">Sudah Dipesan</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="card-footer text-right d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>
-                    <a href="{{ url('booking') }}" class="btn btn-success">Cancel</a>
+                    <a href="{{ url('admins/booking') }}" class="btn btn-success">Cancel</a>
                 </div>
             </form>
         </div>

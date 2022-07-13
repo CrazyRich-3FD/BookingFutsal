@@ -19,9 +19,9 @@ class UserController extends Controller
         //
         $user = User::latest()->paginate(10);
         // Ulasan
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
     
-        return view('User.index',compact('user','ulasan'),["title" => "User"])
+        return view('User.index',compact('user','ulasans'),["title" => "User"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
@@ -32,8 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.create',compact('ulasan'),["title" => "Create User"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('User.create',compact('ulasans'),["title" => "Create User"]);
     }
 
     /**
@@ -50,9 +50,9 @@ class UserController extends Controller
             'email' => 'required|email:dns|unique:user',
             'username' => 'required|min:3|max:255|unique:user',
             'password' => 'required|min:5|max:255|required_with:password-confirm|same:password-confirm',
-            'password-confirm' => 'required|min:5|max:255',
+            // 'password-confirm' => 'required|min:5|max:255',
             'no_hp' => 'required|numeric|min:5|unique:user',
-            'level' => 'required',
+            'alamat' => 'required',
             'role' => 'required'
         ]);
 
@@ -78,8 +78,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.show',compact('user','ulasan'),["title" => "Show User"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('User.show',compact('user','ulasans'),["title" => "Show User"]);
     }
 
     /**
@@ -90,8 +90,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('User.edit',compact('user','ulasan'),["title" => "Edit User"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('User.edit',compact('user','ulasans'),["title" => "Edit User"]);
     }
     
 
@@ -107,7 +107,7 @@ class UserController extends Controller
         //
         $rules = [
             'nama' => 'required|max:255',
-            'level' => 'required',
+            'alamat' => 'required',
             'role' => 'required'
         ];
 
@@ -125,8 +125,8 @@ class UserController extends Controller
 
         $validation = $request->validate($rules);
 
-        $validation['id'] = auth()->user()->id;
-        $validation['password'] = Hash::make($validation['password']);
+        // $validation['id'] = auth()->user()->id;
+        // $validation['password'] = Hash::make($validation['password']);
         
         try {
             // $user->update($validation);

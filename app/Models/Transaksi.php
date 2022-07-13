@@ -16,13 +16,13 @@ class Transaksi extends Model
     //     'pelanggan_id', 'booking_id', 'metode_pembayaran', 'bukti_byr'
     // ];
 
-    public function pelanggan()
-    {
-        return $this->belongsTo(Pelanggan::class);
-    }
-
     public function booking()
     {
         return $this->belongsTo(Booking::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

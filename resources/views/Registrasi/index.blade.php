@@ -135,14 +135,16 @@
                       @enderror
                     </div>
                   </div>
-                  <input type="hidden" name="level" value="Bronze">
-                  <input type="hidden" name="role" value="Member">
-
-                  @error('level')
+                  <div class="form-group mb-0">
+                    <label>Alamat</label>
+                    <textarea class="form-control @error('alamat') is-invalid @enderror" name="alamat" required="" cols="30" rows="10"></textarea>
+                    @error('alamat')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>
                       @enderror
+                  </div>
+                  <input type="hidden" name="role" value="Member">
 
                       @error('role')
                       <div class="invalid-feedback">

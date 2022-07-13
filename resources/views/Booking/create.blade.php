@@ -52,17 +52,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control select2" name="status">
-                            <option>--- Pilih Status ---</option>
-                            <option value="Tersedia">Tersedia</option>
-                            <option value="Sudah Dipesan">Sudah Dipesan</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="card-footer text-right d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>

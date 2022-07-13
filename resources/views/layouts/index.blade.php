@@ -28,6 +28,7 @@
     <link href="{{ asset ('template/lib/animate/animate.min.css ') }}" rel="stylesheet">
     <link href="{{ asset ('template/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css ') }}" rel="stylesheet" />
     <link href="{{ asset ('template/lib/twentytwenty/twentytwenty.css ') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('admin/modules/bootstrap-daterangepicker/daterangepicker.css')}}">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset ('template/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -82,9 +83,37 @@
     <script src="{{ asset ('template/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <script src="{{ asset ('template/lib/twentytwenty/jquery.event.move.js') }}"></script>
     <script src="{{ asset ('template/lib/twentytwenty/jquery.twentytwenty.js') }}"></script>
+    <script src="{{ asset('admin/modules/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset ('template/js/main.js') }}"></script>
+    <script src="{{ asset('admin/js/scripts.js')}}"></script>
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#gambar');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+
+    </script>
 </body>
 
 </html>

@@ -11,8 +11,8 @@ class Ulasan extends Model
 
     protected $table = 'ulasan';
     protected $primaryKey = 'id';
-    protected $guarded =['*'];
+    protected $guarded =[];
     // protected $fillabel = [
-    //     'nama','ulasan',
+    //     'nama','ulasan'
     // ];
 }

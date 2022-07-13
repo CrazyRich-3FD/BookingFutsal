@@ -18,10 +18,10 @@ class BookingController extends Controller
     {
         //
         $booking = Booking::latest()->paginate(5);
-        // Ulasan
-        $ulasan = Ulasan::latest()->paginate(5);
+        // Ulasans
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('Booking.index',compact('booking','ulasan'),["title" => "Booking"])
+        return view('Booking.index',compact('booking','ulasans'),["title" => "Booking"])
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -34,9 +34,9 @@ class BookingController extends Controller
     {
         //
         $lapangan = Lapangan::all();
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('Booking.create',compact('lapangan','ulasan'),["title" => "Create Booking"]);
+        return view('Booking.create',compact('lapangan','ulasans'),["title" => "Create Booking"]);
     }
 
     /**
@@ -52,8 +52,7 @@ class BookingController extends Controller
             'lapangan_id' => 'required',
             'tgl_booking' => 'required',
             'jam_booking' => 'required',
-            'durasi' => 'required',
-            'status'=> 'required'
+            'durasi' => 'required'
             
         ]);     
      
@@ -77,8 +76,8 @@ class BookingController extends Controller
     public function show(Booking $booking)
     {
         //
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('Booking.show',compact('booking','ulasan'),["title" => "Show Booking"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('Booking.show',compact('booking','ulasans'),["title" => "Show Booking"]);
     }
 
     /**
@@ -91,9 +90,9 @@ class BookingController extends Controller
     {
         //
         $lapangan = Lapangan::all();
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('Booking.edit',compact('booking','lapangan','ulasan'),["title" => "Update Booking"]);
+        return view('Booking.edit',compact('booking','lapangan','ulasans'),["title" => "Update Booking"]);
     }
 
     /**
@@ -110,8 +109,7 @@ class BookingController extends Controller
             'lapangan_id' => 'required',
             'tgl_booking' => 'required',
             'jam_booking' => 'required',
-            'durasi' => 'required',
-            'status'=> 'required'
+            'durasi' => 'required'
             
         ]);
      

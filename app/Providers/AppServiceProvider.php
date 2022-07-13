@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         Str::macro('currency', function ($price)
     {
-        return number_format($price, 2, '.', '\'');
+        return number_format($price, 2, ',', '.');
     });
     }
 }

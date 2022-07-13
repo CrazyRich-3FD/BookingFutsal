@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($ulasan as $u)
+                            @foreach ($ulasans as $u)
                             <tr>
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $u->nama }}</td>
@@ -55,7 +55,7 @@
                 <nav class="d-inline-block">
                     <div class="pagination">
                         <div class="fs-3 fw-bolder">
-                            {{ $ulasan->links() }}
+                            {{ $ulasans->links() }}
                         </div>
                     </div>
                 </nav>

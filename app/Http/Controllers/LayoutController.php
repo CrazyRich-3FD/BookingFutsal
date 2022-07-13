@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lapangan;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
 

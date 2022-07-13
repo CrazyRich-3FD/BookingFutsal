@@ -6,7 +6,7 @@
         <div class="card-header">
           <h4>Show User</h4>
           <div class="card-header-action">
-              <a href="{{ url('user') }}" class="btn btn-primary">Kembali</a>
+              <a href="{{ url('admins/user') }}" class="btn btn-primary">Kembali</a>
           </div>
       </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
             <div class="author-box-name">
               <label class="text-primary">{{ $user->nama }}</label>
             </div>
-            <div class="author-box-job">{{ $user->role }} - {{ $user->level }}</div>
+            <div class="author-box-job">{{ $user->role }}</div>
             <div class="author-box-description">
               <table class="table">
                 <tbody>
@@ -41,6 +41,11 @@
                         <td>:</td>
                         <td>{{ $user->no_hp }}</td>
                     </tr>
+                    <tr>
+                      <th scope="row">Alamat</th>
+                      <td>:</td>
+                      <td>{{ $user->alamat }}</td>
+                  </tr>
                 </tbody>
             </table>
             </div>

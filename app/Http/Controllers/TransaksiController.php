@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use PDF;
 use App\Exports\TransaksiExport;
 use App\Models\Ulasan;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiController extends Controller
@@ -25,9 +26,9 @@ class TransaksiController extends Controller
         //
         $transaksi = Transaksi::latest()->paginate(10);
         // Ulasan
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
     
-        return view('Transaksi.index',compact('transaksi','ulasan'),["title" => "Transaksi"])
+        return view('Transaksi.index',compact('transaksi','ulasans'),["title" => "Transaksi"])
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
@@ -39,11 +40,11 @@ class TransaksiController extends Controller
     public function create()
     {
         //
-        $pelanggan = Pelanggan::all();
+        $user = User::all();
         $booking = Booking::all();
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('Transaksi.create',compact('pelanggan','booking','ulasan'),["title" => "Create Transaksi"]);
+        return view('Transaksi.create',compact('user','booking','ulasans'),["title" => "Create Transaksi"]);
     }
 
     /**
@@ -56,7 +57,7 @@ class TransaksiController extends Controller
     {
         //
         $request->validate([
-            'pelanggan_id' => 'required',
+            'user_id' => 'required',
             'booking_id' => 'required',
             'metode_pembayaran' => 'required',
             'bukti_byr' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'     
@@ -87,8 +88,8 @@ class TransaksiController extends Controller
      */
     public function show(Transaksi $transaksi)
     {
-        $ulasan = Ulasan::latest()->paginate(5);
-        return view('Transaksi.show',compact('transaksi','ulasan'),["title" => "Show Transaksi"]);
+        $ulasans = Ulasan::latest()->paginate(5);
+        return view('Transaksi.show',compact('transaksi','ulasans'),["title" => "Show Transaksi"]);
     }
 
     /**
@@ -100,11 +101,11 @@ class TransaksiController extends Controller
     public function edit(Transaksi $transaksi)
     {
         //
-        $pelanggan = Pelanggan::all();
+        $user = User::all();
         $booking = Booking::all();
-        $ulasan = Ulasan::latest()->paginate(5);
+        $ulasans = Ulasan::latest()->paginate(5);
 
-        return view('Transaksi.edit',compact('transaksi','pelanggan','booking','ulasan'),["title" => "Update Transaksi"]);
+        return view('Transaksi.edit',compact('transaksi','user','booking','ulasans'),["title" => "Update Transaksi"]);
     }
 
     /**
@@ -118,7 +119,7 @@ class TransaksiController extends Controller
     {
         //
         $request->validate([
-            'pelanggan_id' => 'required',
+            'user_id' => 'required',
             'booking_id' => 'required',
             'metode_pembayaran' => 'required',    
             ]);

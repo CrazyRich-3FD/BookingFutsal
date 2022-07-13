@@ -3,10 +3,10 @@
 <div class="main-content">
     <section class="section">
         <div class="card">
-            <form action="{{ route('ulasan.store') }}" method="POST" enctype="multipart/form-data" class="forms-sample">
+            <form action="{{ route('ulasan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-header">
-                    <h4>Form Input User</h4>
+                    <h4>Form Input Ulasan</h4>
                 </div>
                 @if ($errors->any())
                 <div class="alert alert-danger">
@@ -30,8 +30,8 @@
 
                 </div>
                 <div class="card-footer text-right d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>
-                    <a href="{{ url('user') }}" class="btn btn-success">Cancel</a>
+                    <button type="submit" class="btn btn-primary mr-3">Submit</button>
+                    <a href="{{ url('admins/ulasan') }}" class="btn btn-success">Cancel</a>
                 </div>
             </form>
         </div>

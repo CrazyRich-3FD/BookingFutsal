@@ -79,7 +79,7 @@
                 </div> --}}
               </div>
               <div class="dropdown-list-content dropdown-list-message">
-                @foreach ($ulasan as $u)
+                @foreach ($ulasans as $u)
                 <div class="dropdown-item">
                   <div class="dropdown-item-avatar">
                     <img alt="image" src="{{ asset('admin/img/avatar/avatar-1.png') }}" class="rounded-circle">
@@ -138,7 +138,7 @@
               </div>
             </div>
           </li>
-          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+          {{-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
               class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
               <div class="dropdown-header">Notifications
@@ -197,14 +197,14 @@
                 <a href="#">View All <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
-          </li>
+          </li> --}}
           <li class="dropdown"><a href="#" data-toggle="dropdown"
               class="nav-link dropdown-toggle nav-link-lg nav-link-user">
               <img alt="image" src="{{ asset('admin/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
               <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->nama }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
+              {{-- <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>
@@ -213,6 +213,9 @@
               </a>
               <a href="features-settings.html" class="dropdown-item has-icon">
                 <i class="fas fa-cog"></i> Settings
+              </a> --}}
+              <a href="{{ 'admins/user' }}" class="dropdown-item has-icon">
+                <i class="fas fa-user"></i> Kelola User
               </a>
               <div class="dropdown-divider"></div>
               <form action="/logout" method="POST">

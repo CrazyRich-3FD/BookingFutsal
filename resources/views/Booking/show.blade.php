@@ -6,7 +6,7 @@
             <div class="card-header">
                 <h4>Show Booking</h4>
                 <div class="card-header-action">
-                    <a href="{{ url('booking') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ url('admins/booking') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
             <div class="row">
@@ -37,6 +37,11 @@
                                             <td>{{ $booking->lapangan->jenis_lapangan }}</td>
                                         </tr>
                                         <tr>
+                                            <th scope="row">Status</th>
+                                            <td>:</td>
+                                            <td>{{ $booking->lapangan->status }}</td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row" >Harga Normal</th>
                                             <td style="width: 0">:</td>
                                             <td>Rp. {{  Str::currency($booking->lapangan->harga_normal) }}</td>
@@ -60,11 +65,6 @@
                                             <th scope="row">Durasi</th>
                                             <td>:</td>
                                             <td>{{ $booking->durasi }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Status</th>
-                                            <td>:</td>
-                                            <td>{{ $booking->status }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -16,7 +16,7 @@
                             <h6 class="text-white mb-0">Sunday</h6>
                             <p class="mb-0"> 8:00am - 5:00pm</p>
                         </div>
-                        <a class="btn btn-light mx-5" href="{{ url('/lapangan') }}">Appointment</a>
+                        <a class="btn btn-light mx-5" href="{{ url('/lapangan-list') }}">Appointment</a>
                     </div>
                 </div>
                 {{-- <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">

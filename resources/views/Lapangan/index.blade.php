@@ -29,11 +29,11 @@
                         <tbody>
                             @foreach ($lapangan as $l)
                             <tr>
-                                <td>{{ ++$i }}</td>
+                                <td style="text-align: center">{{ ++$i }}</td>
                                 <td>{{ $l->nama }}</td>
-                                <td>{{ $l->jenis_lapangan }}</td>
+                                <td style="text-align: center">{{ $l->jenis_lapangan }}</td>
                                 <td>{{ $l->deskripsi }}</td>
-                                <td>
+                                <td class="d-flex justify-content-center">
                                     <form action="{{ route('lapangan.destroy',$l->id) }}" method="POST"
                                         class="d-flex align-items-center">
                                         <a class="btn btn-primary btn-sm mr-3"
