@@ -26,14 +26,6 @@ use Illuminate\Cache\Console\ForgetCommand;
 |
 */
 
-// Route::get('/reset-password', function () {
-//     return view('Auth.reset-password');
-// });
-
-// Route::get('/forgot-password', function () {
-//     return view('Auth.forgot-password');
-// });
-
 Route::get('/contact', function () {
     return view('layouts.contact',["title" => "Contact"]);
 });
@@ -45,13 +37,6 @@ Route::get('403', function () {
     return view('403');
 });
 
-//---------route admin------------
-// Route::view('/admins', 'admin.home');
-// Route::view('/admin/pages/basictable', 'admin.pages.basictable');
-// Route::view('/admin/pages/basicelement', 'admin.pages.basicelement');
-// Route::view('/admin/pages/chart', 'admin.pages.chart');
-// Route::view('/admin/pages/icons', 'admin.pages.icons');
-
 // ----------- Route Bisnis Proses --------------
 
 Route::resource('admins/lapangan', LapanganController::class)->middleware('admin');
@@ -62,8 +47,8 @@ Route::resource('admins/user', UserController::class)->middleware('admin');
 Route::resource('', LayoutController::class);
 Route::resource('home', LayoutController::class);
 Route::resource('admins', DashboardController::class)->middleware('admin');
-Route::resource('pemesanan', BisnisController::class);
-Route::resource('pembayaran', PembayaranController::class);
+Route::resource('pemesanan', BisnisController::class)->middleware('auth');
+Route::resource('pembayaran', PembayaranController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -73,11 +58,11 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
 Route::post('/registrasi', [RegistrasiController::class, 'store']);
 
-Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPassword'])->name('forget.password.get')->middleware('guest');
-Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPassword'])->name('forget.password.post');
+// Route::get('/forget-password', [ForgotPasswordController::class, 'showForgetPassword'])->name('forget.password.get')->middleware('guest');
+// Route::post('/forget-password', [ForgotPasswordController::class, 'submitForgetPassword'])->name('forget.password.post');
 
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPassword'])->name('reset.password.get')->middleware('guest');
-Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('reset.password.post');
+// Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPassword'])->name('reset.password.get')->middleware('guest');
+// Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPassword'])->name('reset.password.post');
 
 Route::get('/lapangan-list', [LapanganController::class, 'lapanganList']);
 Route::get('transaksiPDF', [TransaksiController::class, 'transaksiPDF']);
