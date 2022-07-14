@@ -37,11 +37,12 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            {{-- <div class="d-flex justify-content-between mb-3"><span>Modern Equipment</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-3"><span>Professional Dentist</span><i class="fa fa-check text-primary pt-1"></i></div>
-                            <div class="d-flex justify-content-between mb-2"><span>24/7 Call Support</span><i class="fa fa-check text-primary pt-1"></i></div> --}}
-                            <a href="{{ route('pemesanan.create') }}" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Booking</a>
-                        </div>
+                            <form action="{{ route('pemesanan.create') }}" method="get"
+                            class="d-flex justify-content-center">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $l->id }}">
+                            <button type="submit" class="btn btn-primary py-2 px-4 position-absolute top-100 start-50 translate-middle">Booking</button>
+                        </form>
                     </div>
                     @endforeach
                 </div>

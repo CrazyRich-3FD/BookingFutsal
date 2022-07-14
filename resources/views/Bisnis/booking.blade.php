@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group mt-2">
                     <label for="">Pilih Jam</label>
-                    <select name="jam_booking" id="" class="form-control" >
+                    <select name="jam_booking" id="" class="form-control">
                         <option selected disabled>-- Pilih Jam --</option>
                         <option value="08:00">08:00</option>
                         <option value="09:00">09:00</option>
@@ -44,18 +44,37 @@
                 <div class="form-group mt-2">
                     <label for="">Pilih Lapangan</label>
                     <select name="lapangan_id" id="" class="form-control">
-                        <option selected disabled>-- Pilih Lapangan --</option>
+                        @if ($lapangan !== NULL && $lapangan[0]->id !== NULL)
                         @foreach ($lapangan as $l)
-                            <option value="{{ $l->id }}">{{ $l->nama }}</option>
+                        <option value="{{ $l->id }}" selected>{{ $l->nama }}</option>
                         @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="form-group mt-2">
-                    <label for="">Durasi</label>
-                    <input name="durasi" id="" class="form-control" onkeypress="javascript:return isNumber(event)"
-                        placeholder="Durasi Bermain">
+                    <label for="">Durasi Boking</label>
+                    <select name="durasi" id="" class="form-control">
+                        <option selected disabled>-- Pilih Durasi Bermain --</option>
+                        <option value="1">1 Jam</option>
+                        <option value="2">2 Jam</option>
+                        <option value="3">3 Jam</option>
+                        <option value="4">4 Jam</option>
+                        <option value="5">5 Jam</option>
+                        <option value="6">6 Jam</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn btn-primary mr-3" name="proses">Submit</button>
+                <div class="form-group mt-2">
+                    <label for="">Status</label>
+                    @if ($lapangan !== NULL && $lapangan[0]->id !== NULL)
+                        @foreach ($lapangan as $l)
+                        <input name="status" id="" class="form-control" value="{{ $l->status }}" placeholder="-- Status Lapangan --" disabled>
+                        @endforeach
+                        @endif
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-primary py-2 px-4" name="proses">Submit</button>
+                </div>
+                
             </form>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,11 @@ class Booking extends Model
     // protected $fillable = [
     //     'lapangan_id', 'tgl_booking', 'jam_booking', 'durasi','status'
     // ];
+
+    // public function getCreatedAtAttribute(){
+    //     return Carbon::parse($this->attributes['tgl_booking'])
+    //         ->translatedFormat('l');
+    // }
 
     public function lapangan()
     {
