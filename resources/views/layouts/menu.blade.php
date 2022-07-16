@@ -10,6 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0">
             <a href="{{ url('/home') }}" class="nav-item nav-link {{ $title == "Home" ? 'active' : '' }}">Home</a>
+            <a href="{{ url('/about') }}" class="nav-item nav-link {{ $title == "About" ? 'active' : '' }}">About</a>
             <a href="{{ url('/lapangan-list') }}" class="nav-item nav-link {{ $title == "List-Lapangan" ? 'active' : '' }}">Lapangan</a>
             {{-- <a href="" class="nav-item nav-link">Service</a> --}}
             <a href="{{ url('/contact') }}" class="nav-item nav-link {{ $title == "Contact" ? 'active' : '' }}">Contact</a>
@@ -22,12 +23,13 @@
                      Welcome, {{ auth()->user()->nama }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end mt-2">
-                    {{-- <li><a class="dropdown-item" href="{{ '/admins' }}">Dashboard</a></li> --}}
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i>&emsp;<span>Profile</span></a></li>
+                    <li><a class="dropdown-item" href="{{ '/riwayat' }}"><i class="fas fa-coins"></i></i>&emsp;<span>Riwayat Transaksi</span></a></li>
                     <div class="dropdown-divider"></div>
                     <li>
                         <form action="/logout" method="POST">
                             @csrf
-                            <button type="submit" class="dropdown-item fw-bold"><i class="bi bi-box-arrow-right"></i>&emsp;<span>Logout</span></button>
+                            <button type="submit" class="dropdown-item fw-bold"><i class="fas fa-sign-out-alt"></i>&emsp;<span>Logout</span></button>
                         </form>
                     </li>
                 </ul>

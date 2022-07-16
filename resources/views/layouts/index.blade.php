@@ -53,7 +53,7 @@
         </div>
     </div>
     <!-- Spinner End loading -->
-
+    @include('sweetalert::alert')
     <!-- Topbar Start -->
     {{-- @include ('layouts.header') --}}
     <!-- Topbar End -->
@@ -84,6 +84,8 @@
     <script src="{{ asset ('template/lib/twentytwenty/jquery.event.move.js') }}"></script>
     <script src="{{ asset ('template/lib/twentytwenty/jquery.twentytwenty.js') }}"></script>
     <script src="{{ asset('admin/modules/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{ asset('admin/modules/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{ asset('admin/js/page/modules-sweetalert.js')}}"></script>
 
     <!-- Template Javascript -->
     <script src="{{ asset ('template/js/main.js') }}"></script>

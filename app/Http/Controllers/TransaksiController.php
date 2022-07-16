@@ -92,6 +92,14 @@ class TransaksiController extends Controller
         return view('Transaksi.show',compact('transaksi','ulasans'),["title" => "Show Transaksi"]);
     }
 
+    public function showTransaksi($id)
+    {
+        return view('Bisnis.show', [
+            'transaksi' => Transaksi::findOrFail($id)
+        ],["title" => "Show Transaksi"]);
+        // return view('Bisnis.show',compact('transaksi'),["title" => "Show Transaksi"]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

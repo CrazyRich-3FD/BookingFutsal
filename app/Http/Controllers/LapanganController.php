@@ -34,10 +34,9 @@ class LapanganController extends Controller
     public function lapanganList()
     {
         //
-        $lapangan = Lapangan::latest()->paginate(6);
+        $lapangan = Lapangan::latest()->paginate();
     
-        return view('Lapangan.lapangan_list',compact('lapangan'),["title" => "List-Lapangan"])
-            ->with('i', (request()->input('page', 1) - 1) * 6);
+        return view('Lapangan.lapangan_list',compact('lapangan'),["title" => "List-Lapangan"]);
     }
 
     /**

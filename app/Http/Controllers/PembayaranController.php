@@ -27,13 +27,13 @@ class PembayaranController extends Controller
     public function create(Request $request)
     {
         $single_user = [];
-        if($request->id){
-            $single_user = User::where('id', $request->id)->get();
+        if(decrypt($request->id)){
+            $single_user = User::where('id', decrypt($request->id))->get();
         }
 
         $id_booking = [];
-        if($request->idbooking){
-            $id_booking = Booking::where('id', $request->idbooking)->get();
+        if(decrypt($request->idbooking)){
+            $id_booking = Booking::where('id', decrypt($request->idbooking))->get();
         }
 
         $user = User::all();
@@ -67,7 +67,7 @@ class PembayaranController extends Controller
                 Transaksi::create($input);
     
                 return redirect()->route('index')
-                    ->with('success', 'Transaksi Created Successfully!');
+                    ->with('success', 'Konfirmasi Pembayaran Berhasil, Silakan Cek Di Riwayat Transaksi');
             } catch (\Exception $e){
                 return redirect()->back()
                     ->with('error', 'Error during the creation!');
@@ -80,9 +80,9 @@ class PembayaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaksi $transaksi)
     {
-        //
+        // return view('Bisnis.show',compact('transaksi'),["title" => "Struk Pembayaran"]);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 @php
-$id = $_REQUEST['id'];
+$id = decrypt($_REQUEST['id']);
 $date = Date("d F Y");
 @endphp
 @if ($id_booking !== NULL && $id_booking[0]->id !== NULL)
@@ -62,8 +62,8 @@ $date = Date("d F Y");
                         <form action="{{ route('pembayaran.create') }}" method="get"
                             class="d-flex justify-content-center">
                             @csrf
-                            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
-                            <input type="hidden" name="idbooking" value="{{ $id }}">
+                            <input type="hidden" name="id" value="{{ encrypt(Auth::user()->id) }}">
+                            <input type="hidden" name="idbooking" value="{{ encrypt($id) }}">
                             <button type="submit" class="btn btn-success w-50 mx-auto"><i
                                     class="bi bi-cloud-arrow-up-fill"></i>&nbsp;Konfirmasi Pembayaran</button>
                         </form>

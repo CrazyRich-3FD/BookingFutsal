@@ -7,7 +7,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Ingin Bermain Futsal Bersama Teman Atau Saudara</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Booking Lapangan Sekarang Juga</h1>
-                            <a href="{{ url('/lapangan-list') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
+                            <a href="{{ url('/lapangan-list') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Booking</a>
                             <a href="{{ url('/contact') }}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">Ingin Bermain Futsal Bersama Teman Atau Saudara</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">Booking Lapangan Sekarang Juga</h1>
-                            <a href="{{ url('/lapangan-list') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Appointment</a>
+                            <a href="{{ url('/lapangan-list') }}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Booking</a>
                             <a href="{{ url('/contact') }}" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Contact Us</a>
                         </div>
                     </div>

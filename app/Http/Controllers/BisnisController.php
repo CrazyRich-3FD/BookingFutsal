@@ -17,8 +17,8 @@ class BisnisController extends Controller
     public function index(Request $request)
     {
         $id_booking = [];
-        if($request->id){
-            $id_booking = Booking::where('id', $request->id)->get();
+        if(decrypt($request->id)){
+            $id_booking = Booking::where('id', decrypt($request->id))->get();
         }
         $day = Carbon::now()->format('d');
         // DB::table('users')->where(DB::raw(DAY('created_at)), $day);
@@ -31,8 +31,8 @@ class BisnisController extends Controller
     {
         // $lapangan = Lapangan::all();
         $lapangan = [];
-        if($request->id){
-            $lapangan = Lapangan::where('id', $request->id)->get();
+        if(decrypt($request->id)){
+            $lapangan = Lapangan::where('id', decrypt($request->id))->get();
         }
         return view('Bisnis.booking',compact('lapangan'),["title" => "Booking"]);
     }
@@ -48,10 +48,9 @@ class BisnisController extends Controller
         ]);    
 
         try {
-            $id = Booking::create($request->all())->id;
-
-            return redirect()->route('pemesanan.index',compact('id'))
-                ->with('success', 'Booking Created Successfully!');
+            $pesan = Booking::create($request->all())->id;
+            $id = encrypt($pesan);
+            return redirect()->route('pemesanan.index',compact('id'));
         } catch (\Exception $e){
             return redirect()->back()
                 ->with('error', 'Error during the creation!');
@@ -60,7 +59,7 @@ class BisnisController extends Controller
 
     public function show(Booking $booking)
     {
-        return view('Bisnis.show',compact('booking'),["title" => "Show Booking"]);
+        //
     }
 
     public function edit(Request $request)

@@ -11,6 +11,7 @@ use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Cache\Console\ForgetCommand;
@@ -32,6 +33,9 @@ Route::get('/contact', function () {
 Route::get('/booking', function () {
     return view('Bisnis.booking',["title" => "Booking"]);
 });
+Route::get('/about', function() {
+    return view('layouts.abouts',["title" => "About"]);
+});
 
 Route::get('403', function () {
     return view('403');
@@ -49,6 +53,7 @@ Route::resource('home', LayoutController::class);
 Route::resource('admins', DashboardController::class)->middleware('admin');
 Route::resource('pemesanan', BisnisController::class)->middleware('auth');
 Route::resource('pembayaran', PembayaranController::class)->middleware('auth');
+Route::resource('riwayat', RiwayatController::class)->middleware('auth');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -67,3 +72,5 @@ Route::post('/registrasi', [RegistrasiController::class, 'store']);
 Route::get('/lapangan-list', [LapanganController::class, 'lapanganList']);
 Route::get('transaksiPDF', [TransaksiController::class, 'transaksiPDF']);
 Route::get('transaksiExcel', [TransaksiController::class, 'transaksiExcel']);
+Route::get('invoice', [RiwayatController::class, 'invoice']);
+Route::get('detail', [RiwayatController::class, 'tampil']);

@@ -22,6 +22,7 @@
                                 <th class="ml-5">No</th>
                                 <th>Nama Lapangan</th>
                                 <th>Jenis Lapangan</th>
+                                <th>Status</th>
                                 <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
@@ -32,6 +33,7 @@
                                 <td style="text-align: center">{{ ++$i }}</td>
                                 <td>{{ $l->nama }}</td>
                                 <td style="text-align: center">{{ $l->jenis_lapangan }}</td>
+                                <td style="text-align: center">{{ $l->status }}</td>
                                 <td>{{ $l->deskripsi }}</td>
                                 <td class="d-flex justify-content-center">
                                     <form action="{{ route('lapangan.destroy',$l->id) }}" method="POST"
