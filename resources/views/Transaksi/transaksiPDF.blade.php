@@ -22,6 +22,7 @@
                 <th>No. Hp</th>
                 <th>Alamat</th>
                 <th>Pembayaran</th>
+                <th>Total Harga</th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +30,15 @@
             @foreach ($data as $d)
             <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $d->pelanggan->nama }}</td>
+                <td>{{ $d->user->nama }}</td>
                 <td>{{ $d->booking->lapangan->nama }}</td>
                 <td>{{ $d->booking->tgl_booking }}</td>
                 <td>{{ $d->booking->jam_booking }}</td>
                 <td>{{ $d->booking->durasi }} Jam</td>
-                <td>{{ $d->pelanggan->no_tlp }}</td>
-                <td>{{ $d->pelanggan->alamat }}</td>
+                <td>{{ $d->user->no_hp }}</td>
+                <td>{{ $d->user->alamat }}</td>
                 <td>{{ $d->metode_pembayaran }}</td>
+                <td>Rp. {{ number_format($d->booking->lapangan->harga_normal * $d->booking->durasi, '2', ',', '.') }}</td>
             </tr>
             @endforeach
         </tbody>

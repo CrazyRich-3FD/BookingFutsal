@@ -28,7 +28,12 @@ class UlasanController extends Controller
     public function create()
     {
         $ulasans = Ulasan::latest()->paginate(5);
-        return view('Ulasan.create',compact('ulasan','ulasans'),["title" => "Create Ulasan"]);
+        return view('Ulasan.create',compact('ulasans'),["title" => "Create Ulasan"]);
+    }
+
+    public function beriUlasan()
+    {
+        return view('layouts.ulasan',["title" => "Beri Ulasan"]);
     }
 
     /**
@@ -52,6 +57,27 @@ class UlasanController extends Controller
             Ulasan::create($input);
 
             return redirect()->route('ulasan.index')
+                ->with('success', 'Ulasan Created Successfully!');
+        } catch (\Exception $e){
+            return redirect()->back()
+                ->with('error', 'Error during the creation!');
+        }
+    }
+
+    public function storeBeriUlasan(Request $request)
+    {
+
+         $request->validate([
+            'nama' => 'required',
+            'ulasan' => 'required'
+        ]);
+
+        $input = $request ->all();
+
+        try {
+            Ulasan::create($input);
+
+            return redirect()->route('index')
                 ->with('success', 'Ulasan Created Successfully!');
         } catch (\Exception $e){
             return redirect()->back()

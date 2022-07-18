@@ -29,8 +29,8 @@ class RiwayatController extends Controller
     public function tampil(Request $request)
     {
         $riwayat = [];
-        if($request->id){
-            $riwayat = Transaksi::where('id', $request->id)->get();
+        if(decrypt($request->id)){
+            $riwayat = Transaksi::where('id', decrypt($request->id))->get();
         }
 
         return view('Bisnis.show',compact('riwayat'),["title" => "Struk Pembayaran"]);
@@ -39,8 +39,8 @@ class RiwayatController extends Controller
     public function invoice(Request $request)
     {
         $riwayat = [];
-        if($request->id){
-            $riwayat = Transaksi::where('id', $request->id)->get();
+        if(decrypt($request->id)){
+            $riwayat = Transaksi::where('id', decrypt($request->id))->get();
         }
 
         // return view('Bisnis.invoice',compact('riwayat'));

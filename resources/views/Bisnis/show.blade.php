@@ -49,7 +49,7 @@
                             <form action="{{ url('invoice') }}" method="get">
                                 @csrf
                                 {{-- <input type="hidden" name="id" value="{{ encrypt(Auth::user()->id) }}"> --}}
-                                <input type="hidden" name="id" value="{{ $r->id }}">
+                                <input type="hidden" name="id" value="{{ encrypt($r->id) }}">
                                 <button type="submit" class="btn btn-outline-success rounded-3 mt-2 w-100"><i
                                     class="fas fa-download"></i>&nbsp;Download</button>
                             </form>

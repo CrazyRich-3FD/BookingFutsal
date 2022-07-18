@@ -23,8 +23,12 @@
                      Welcome, {{ auth()->user()->nama }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end mt-2">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i>&emsp;<span>Profile</span></a></li>
-                    <li><a class="dropdown-item" href="{{ '/riwayat' }}"><i class="fas fa-coins"></i></i>&emsp;<span>Riwayat Transaksi</span></a></li>
+                    @if (auth()->user()->role == 'Admin')
+                    <li><a class="dropdown-item" href="{{ 'admins' }}"><i class="fas fa-fire"></i>&emsp;<span>Dasboard</span></a></li>
+                    @endif
+                    <li><a class="dropdown-item" href="{{ route('profile', auth()->user()->id) }}"><i class="fas fa-user"></i>&emsp;<span>Profile</span></a></li>
+                    <li><a class="dropdown-item" href="{{ '/riwayat' }}"><i class="fas fa-coins"></i>&emsp;<span>Riwayat Transaksi</span></a></li>
+                    <li><a class="dropdown-item" href="{{ route('beriUlasan')}}"><i class="fas fa-comments"></i>&emsp;<span>Ulasan</span></a></li>
                     <div class="dropdown-divider"></div>
                     <li>
                         <form action="/logout" method="POST">

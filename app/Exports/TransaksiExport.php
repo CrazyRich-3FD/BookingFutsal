@@ -19,18 +19,18 @@ class TransaksiExport implements FromCollection, WithHeadings, ShouldAutoSize, W
     public function collection()
     {
             $transaksi = DB::table('transaksi')
-            ->join('pelanggan', 'pelanggan.id', '=', 'transaksi.pelanggan_id')
+            ->join('user', 'user.id', '=', 'transaksi.user_id')
             ->join('booking', 'booking.id', '=', 'transaksi.booking_id')
             ->join('lapangan', 'lapangan.id', '=', 'booking.lapangan_id')
 
             ->select(
-                'pelanggan.nama AS nama',
+                'user.nama AS nama',
                 'lapangan.nama AS nama lapangan',
                 'booking.tgl_booking AS tanggal booking',
                 'booking.jam_booking AS jam booking',
                 'booking.durasi AS durasi booking',
-                'pelanggan.no_tlp AS no tlp',
-                'pelanggan.alamat AS alamat',
+                'user.no_hp AS no hp',
+                'user.alamat AS alamat',
                 'transaksi.metode_pembayaran',
             )
             ->get();

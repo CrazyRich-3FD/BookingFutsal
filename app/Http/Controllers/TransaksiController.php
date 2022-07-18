@@ -175,7 +175,7 @@ class TransaksiController extends Controller
     {
         $data = Transaksi::all();
 
-        $pdf = PDF::loadView('transaksi/transaksiPDF', ['data' => $data])->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('Transaksi.transaksiPDF', ['data' => $data])->setPaper('a4', 'landscape');
         return $pdf->download(date('d/m/y').'data-transaksi.pdf');
 
     }

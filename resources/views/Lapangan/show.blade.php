@@ -6,7 +6,7 @@
             <div class="card-header">
                 <h4>Show Lapangan</h4>
                 <div class="card-header-action">
-                    <a href="{{ url('lapangan') }}" class="btn btn-primary">Kembali</a>
+                    <a href="{{ url('admins/lapangan') }}" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
             <div class="row">

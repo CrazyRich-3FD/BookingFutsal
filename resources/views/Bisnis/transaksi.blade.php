@@ -93,6 +93,7 @@
                             <label for="">Tata Cara Pembayaran</label>
                             <ol style="text-align: justify;">
                                 <li>Bayar menggunakan transfer via ATM / M-Banking / SMS-Banking ke nomer rekening yang anda pilih</li>
+                                <li>Untuk Metode Pembayaran dengan DP, Minimal 50% pembayaran</li>
                                 <li>Setelah melakukan pembayaran, upload bukti pembayaran di form konfirmasi pembayaran</li>
                                 <li>Jika bukti bayar sudah terkonfirmasi, lanjutkan dengan meng-klik tombol Booking untuk mendapatkan struk bukti pembookingan lapangan</li>
                             </ol>

@@ -45,7 +45,7 @@
                                     <div class="d-flex justify-content-center">
                                         <form action="{{ url('detail') }}" method="get">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $t->id }}">
+                                            <input type="hidden" name="id" value="{{ encrypt($t->id) }}">
                                             <button type="submit" class="btn btn-success">Show</button>
                                         </form>
                                     </div>
